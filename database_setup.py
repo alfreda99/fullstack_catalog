@@ -38,21 +38,21 @@ class Book(Base):
     user = relationship(User)
 
 
-@property
-def serialize(self):
-    """Return object data in easily serializeable format"""
-    return {
-        'id': self.id,
-        'user_id': self.user_id,
-        'title': self.title,
-        'author': self.author,
-        'price': self.price,
-        'category': self.category,
-        'inventoryCount': self.inventoryCount,
-        'rating': self.rating,
-        'dateUpdated': str(self.dateUpdated),
-        'description': self.description
-    }
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'title': self.title,
+            'author': self.author,
+            'price': self.price,
+            'category': self.category,
+            'inventoryCount': self.inventoryCount,
+            'rating': self.rating,
+            'dateUpdated': str(self.dateUpdated),
+            'description': self.description
+        }
 
 
 engine = create_engine('sqlite:///bookstore.db')
