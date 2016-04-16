@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row">
+		<div class="col-xs-4">
+			<h3>Book Categories</h3>
+			<div class="list-group">
+				{% for category in categories %}
+					{%if category == book_category %}
+						<a class="list-group-item active book-category" href = "{{url_for('getBooksByCategory', book_category=category)}}">
+							<h4>{{category}}</h4>
+						</a>
+					{% else %}
+						<a class="list-group-item book-category" href = "{{url_for('getBooksByCategory', book_category=category)}}">
+							<h4>{{category}}</h4>
+						</a>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="add-book">
+				{%if 'username' in session %}
+					<a href="{{url_for('addBook')}}">
+						<button class="btn btn-default add-book" id="addBook">
+							<span class="glyphicon glyphicon-book" aria-hidden="true"></span>Add Book
+						</button>
+					</a>
+				{% endif %}
+			</div>
+		</div>
+		<div class="col-xs-8">
+			<h3>Books in {{book_category}}</h3>
+			{% for book in books %}
+				<a href = "{{url_for('getBookDetails', book_id = book.id)}}">
+					<h5>{{book.title}}</h5>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

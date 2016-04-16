@@ -1,0 +1,34 @@
+<div class="row top-menu">
+	<div class="col-md-6">
+		<a href="{{url_for('getLatestBooks')}}">
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home
+		</a>
+	</div>
+	<div class="col-md-6 text-right">
+		{%if 'username' not in session %}
+			<a href="{{url_for('showLogin')}}">Click Here to Login </a>
+			{% else %}
+			<a href="{{url_for('disconnect')}}">Logout </a>
+		{% endif %}
+	</div>
+</div>
+<div class="row divider green">
+	<div class="col-md-12"></div>
+</div>
+<div class="row banner menu">
+	<div class="col-md-1"></div>
+	<div class="col-md-11 padding-none">
+		<h1>Lola's Bookstore</h1>
+	</div>
+</div>
+<div class = 'flash'>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul>
+				{% for message in messages %}
+					<li> <strong> {{ message }} </strong> </li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
+</div>

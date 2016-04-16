@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row">
+		<div class="col-xs-4">
+			<h3>Book Categories</h3>
+			{% for category in categories %}
+				<a href = "{{url_for('getBooksByCategory', book_category=category)}}">
+					<h4>{{category}}</h4>
+				</a>
+			{% endfor %}
+
+			<div class="add-book">
+				{%if 'username' in session %}
+					<a href="{{url_for('addBook')}}">
+						<button class="btn btn-default add-book" id="addBook">
+							<span class="glyphicon glyphicon-book" aria-hidden="true"></span>Add Book
+						</button>
+					</a>
+				{% endif %}
+			</div>
+
+		</div>
+		<div class="col-xs-8">
+			<h3>Latest Books</h3>
+			{% for book in books %}
+				<a href = "{{url_for('getBookDetails', book_id = book.id)}}">
+					<h5>{{book.title}}
+						<small>({{book.category}})</small>
+					</h5>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

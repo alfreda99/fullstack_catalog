@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script>
+        var stateToken = "{{STATE}}";
+    </script>
+
+    <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//apis.google.com/js/platform.js?onload=start"></script>
+    <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- GOOGLE PLUS SIGN IN-->
+            <div class="signInButton">
+                <span class="g-signin" data-scope="openid email" data-clientid="110373685844-pg917ltggkbifnhtc46l23h7lm3lkj2n.apps.googleusercontent.com" data-redirecturi="postmessage" data-accesstype="offline" data-cookiepolicy="single_host_origin" data-callback="signInCallback" data-approvalprompt="force">
+            </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!--FACEBOOK SIGN IN -->
+            <button class="signInButton">
+              <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
+                <a href='javascript:sendTokenToServer()'>Login with Facebook</a>
+              </fb:login-button>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="result"></div>
+        </div>
+    </div>
+{% endblock %}
